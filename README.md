@@ -6,6 +6,10 @@ This repository hosts my **professional portfolio website** documenting real-wor
 🌐 **Live site:** (https://github.com/pragepani/)  
 📄 **Reference:** “Cybersecurity Project Plan — v1.0 (Oct 2025)”
 
+
+---
+![Home lab network topology: pfSense, VLANs, Zeek, Wazuh, ELK, MISP/OpenCTI, Shuffle, DMZ and internal segments](assets/img/Current_Network_Diagram_v6_16thOct.jpg)
+---
 ---
 
 ## 🧠 Focus Areas (Full Project Roadmap)
