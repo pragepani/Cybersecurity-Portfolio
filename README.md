@@ -3,7 +3,7 @@
 Welcome!  
 This repository hosts my **professional portfolio website** documenting real-world, production-grade **Cybersecurity projects** developed through my **18-Week Cybersecurity AI & Lab Project Plan**.
 
-🌐 **Live site:** [https://pragepani.github.io](https://pragepani.github.io)  
+🌐 **Live site:** [[https://pragepani.github.io](https://pragepani.github.io)](https://github.com/pragepani/)  
 📄 **Reference:** “18-Week Cybersecurity AI & Lab Project Plan — v1.0 (Oct 2025)”
 
 ---
