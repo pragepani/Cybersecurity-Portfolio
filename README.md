@@ -1,4 +1,4 @@
-# 🔐 Cybersecurity + AI Portfolio — Prageeth Panicker
+# 🔐 Cybersecurity + AI Portfolio 
 
 Welcome!  
 This repository hosts my **professional portfolio website** showcasing real-world **AI-powered cybersecurity projects** built during my 18-week intensive lab plan.
@@ -48,11 +48,11 @@ This repository hosts my **professional portfolio website** showcasing real-worl
 
 | Metric | Target | Achieved |
 |--------|---------|-----------|
-| Recall (NIDS) | ≥ 95 % | ✅ 99.8 % |
-| False Positive Rate | ≤ 2 % | ✅ 1.6 % |
-| ROC-AUC (Malware) | ≥ 0.95 | ✅ 0.98 |
-| Phishing Precision | ≥ 90 % | ✅ 93 % |
-| SOC Latency (LLM Copilot Response) | < 2 s | ✅ 1.7 s avg |
+| Recall (NIDS) | ≥ 95 % |  |
+| False Positive Rate | ≤ 2 % |  |
+| ROC-AUC (Malware) | ≥ 0.95 |  |
+| Phishing Precision | ≥ 90 % |  |
+| SOC Latency (LLM Copilot Response) | < 2 s |  |
 
 ---
 
