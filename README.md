@@ -1,4 +1,4 @@
-# 🔐 Cybersecurity & AI Portfolio 
+# 🔐 Cybersecurity Portfolio 
 
 Welcome!  
 This repository hosts my **professional portfolio website** documenting real-world, production-grade **Cybersecurity projects** developed through my **18-Week Cybersecurity AI & Lab Project Plan**.
