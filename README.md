@@ -1,10 +1,13 @@
 # 🔐 Cybersecurity Portfolio 
 
 Welcome!  
-This repository hosts my **professional portfolio website** documenting real-world, production-grade **Cybersecurity projects** 
+This repository hosts my **professional portfolio website** documenting real-world, production-grade **Cybersecurity projects** in home lab setup.
 
 🌐 **Live site:** (https://github.com/pragepani/)  
 📄 **Reference:** “Cybersecurity Project Plan — v1.0 (Oct 2025)”
+
+
+https://github.com/pragepani/Cybersecurity/blob/f9bea1c8f67174014ab13d9c630fc9b9cf8512a0/Current_Network_Diagram_v6_16thOct.jpg
 
 ---
 
