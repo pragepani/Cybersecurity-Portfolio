@@ -92,7 +92,7 @@ python scripts/05_integration_test.py --zeek-log zeek/logs/conn.log --out-csv ou
 
 | Part | Description | Link |
 |------|--------------|------|
-| **Part 1 – Foundation & Early Implementation** | Project scope, architecture, and feature engineering | [📄 Open Part 1]([Formatted_Docs/PART_1_FOUNDATION_and_EARLY_IMPLEMENT.md](https://github.com/pragepani/Cybersecurity-Portfolio/blob/7dbc7216f2a98672d2a10e13bfcf05b01ac5a6cd/NIDS-ML%3A%20AI-Powered%20Network%20Intrusion%20Detection%20with%20Explainability/Part%201%20Foundation%20and%20Early%20Implementation.md)) |
+| **Part 1 – Foundation & Early Implementation** | Project scope, architecture, and feature engineering | [Part 1 – Foundation & Early Implementation](NIDS-ML%20AI-Powered%20Network%20Intrusion%20Detection%20with%20Explainability/NIDS-ML%20AI-Powered%20Network%20Intrusion%20Detection%20with%20Explainability/Part%201%20Foundation%20and%20Early%20Implementation.md)
 | **Part 2 – Core Implementation & Deployment** | Model training (LightGBM + Autoencoder) and evaluation | [📄 Open Part 2](Formatted_Docs/PART_2_CORE_IMPLEMENTATION_and_DEPLOY.md) |
 | **Part 3 – Results, Analysis & Professional Development** | Testing, simulation, explanation metrics & career takeaways | [📄 Open Part 3](Formatted_Docs/PART_3_RESULTS_ANALYSIS_and_PROFESSI.md) |
 
