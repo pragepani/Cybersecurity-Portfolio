@@ -36,7 +36,7 @@ This repository hosts my **professional portfolio website** documenting real-wor
 
 | # | AI Project | Status | Goal / Focus |
 |:-:|-------------|:-------:|--------------|
-| AI-1 | **NIDS-ML Development** (Part 1 & 2) | 🚧 In Progress | Network Intrusion Detection System with LightGBM + Autoencoder + GenAI explainer |
+| AI-1 | **NIDS-ML Development** (Part 1 & 2) | ✅ Completed | Network Intrusion Detection System with LightGBM + Autoencoder + GenAI explainer |
 | Lab 11–12 | **NIDS Validation + Red Team / WAF** | 🚧 In Progress | Real-world attack simulation and WAF rule tuning |
 | AI-2 | **Phishing Classifier** (Part 1 & 2) | 🕓 Scheduled | NLP & LLM-based email threat detection |
 | Lab 13–15 | **Threat Intelligence Stack (MISP + OpenCTI + SOAR)** | 🕓 Scheduled | Operational IOC enrichment and automation |
