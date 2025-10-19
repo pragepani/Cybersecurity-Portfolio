@@ -2762,37 +2762,42 @@ grep 'CYwKzH3VrF9P1d2H5a' /opt/zeek/logs/current/conn.log
 
 **File Structure:**
 
-project/
-├── README.md (this document)
-├── data/
-│   ├── Friday-WorkingHours-clean.parquet
-│   ├── mitre_knowledge_base.json
-│   ├── mitre_techniques.json
-│   └── feature_metadata.json
-├── models/
-│   ├── lightgbm_model.joblib
-│   ├── autoencoder_model.keras
-│   ├── autoencoder_threshold.npy
-│   ├── feature_scaler.joblib
-│   ├── label_encoder.joblib
-│   └── training_metrics.json
-├── chroma_db/
-│   └── (vector database files)
-├── outputs/
-│   ├── nids_detections.csv
-│   ├── feature_importance.png
-│   ├── confusion_matrix_lightgbm.png
-│   └── autoencoder_reconstruction_errors.png
-├── scripts/
-│   ├── 01_dataset_preparation.py
-│   ├── 02_feature_engineering.py
-│   ├── 03_model_training.py
-│   ├── 04_rag_explainer.py
-│   └── 05_live_detection.py
-└── tests/
+├── README.md # Project overview and documentation
+│
+├── data/ # Datasets and knowledge base
+│ ├── Friday-WorkingHours-clean.parquet
+│ ├── mitre_knowledge_base.json
+│ ├── mitre_techniques.json
+│ └── feature_metadata.json
+│
+├── models/ # Trained ML and DL models
+│ ├── lightgbm_model.joblib
+│ ├── autoencoder_model.keras
+│ ├── autoencoder_threshold.npy
+│ ├── feature_scaler.joblib
+│ ├── label_encoder.joblib
+│ └── training_metrics.json
+│
+├── chroma_db/ # Vector database for RAG explainer
+│ └── (vector database files)
+│
+├── outputs/ # Generated reports and visualizations
+│ ├── nids_detections.csv
+│ ├── feature_importance.png
+│ ├── confusion_matrix_lightgbm.png
+│ └── autoencoder_reconstruction_errors.png
+│
+├── scripts/ # Core implementation scripts
+│ ├── 01_dataset_preparation.py
+│ ├── 02_feature_engineering.py
+│ ├── 03_model_training.py
+│ ├── 04_rag_explainer.py
+│ └── 05_live_detection.py
+│
+└── tests/ # Unit and integration tests
 └── unit_tests.py
-
 ---
 
 # **END OF COMPLETE PROJECT DOCUMENT**
+
 
