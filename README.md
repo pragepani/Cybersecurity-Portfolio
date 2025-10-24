@@ -4,7 +4,7 @@ Welcome!
 This repository hosts my **professional portfolio website** documenting real-world, production-grade **Cybersecurity projects** in home lab setup.
 
 🌐 **Live site:** (https://github.com/pragepani/Cybersecurity)
-📄 **Reference:** “Cybersecurity Project Plan — v1.0 (Oct 2025)”
+
 
 ## 🖧 Network Topology 
 ![image_alt](https://github.com/pragepani/Cybersecurity/blob/f9bea1c8f67174014ab13d9c630fc9b9cf8512a0/Current_Network_Diagram_v6_16thOct.jpg)
