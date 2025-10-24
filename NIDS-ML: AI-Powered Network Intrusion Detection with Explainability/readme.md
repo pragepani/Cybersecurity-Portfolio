@@ -105,8 +105,6 @@ NIDS-ML: AI-Powered Network Intrusion Detection with Explainability/
 │   ├── 03_Priority_Upgrade.ipynb
 │   ├── 04_RAG_Implementation.ipynb
 │   └── 05_Zeek_Integration.ipynb
-├── scripts/                  # Automation & inference scripts
-│   └── step7_parallel_processing.py
 ├── results/                  # Detection results and logs
 │   └── zeek_3tier_final.csv
 └── docs/
