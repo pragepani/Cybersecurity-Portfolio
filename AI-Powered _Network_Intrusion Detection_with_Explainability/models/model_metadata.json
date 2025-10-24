@@ -1,0 +1,27 @@
+{
+    "production_model": "lgb_model_cv.pkl",
+    "model_type": "LightGBM Classifier",
+    "validation": "5-Fold Cross-Validation",
+    "performance": {
+        "accuracy": "99.90% (\u00b10.01%)",
+        "recall": "99.92%",
+        "precision": "99.88%",
+        "roc_auc": "0.9990"
+    },
+    "training_data": {
+        "total_samples": 200000,
+        "benign_samples": 100000,
+        "attack_samples": 100000,
+        "balance": "50/50"
+    },
+    "features": {
+        "count": 77,
+        "names_file": "feature_names.pkl"
+    },
+    "usage": {
+        "load_model": "with open('lgb_model_cv.pkl', 'rb') as f: model = pickle.load(f)",
+        "load_features": "with open('feature_names.pkl', 'rb') as f: features = pickle.load(f)",
+        "predict": "predictions = model.predict(X_new)"
+    },
+    "created": "2025-10-23 16:27:06"
+}

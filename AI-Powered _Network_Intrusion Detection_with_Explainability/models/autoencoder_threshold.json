@@ -1,0 +1,7 @@
+{
+    "threshold": 0.05800701308655079,
+    "percentile": 95,
+    "benign_mean_error": 0.02069150477714443,
+    "attack_mean_error": 1.414597603941962,
+    "separation_factor": 68.36610576068438
+}

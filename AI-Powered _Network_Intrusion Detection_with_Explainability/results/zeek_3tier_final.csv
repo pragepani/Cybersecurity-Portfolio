@@ -1,0 +1,6 @@
+flow_id,zeek_uid,zeek_timestamp,src_ip,dst_ip,dst_port,attack_type,confidence,detection_method,tier_votes,explanation,mitre_techniques,mitre_tactics,recommended_action,severity,explanation_tier,alert_id
+6,CtRPuu31OANEOVvPfl,1761304191.284308,fe80::a00:27ff:fe28:86eb,ff02::2,134,DoS,1.0,Autoencoder + Rule-DoS,2,"The attack is a Direct Network Flood (T1498.001) causing a denial of service by sending a high-volume of network traffic to a target, exhausting available bandwidth and degrading resource availability.
+
+This attack was detected due to packet rate exceeding 10,000 pkt/s (Key Indicator: Packet rate exceeding 10,000 pkt/s), indicating a sudden increase in network traffic from single/multiple sources.
+
+Immediate action: Block the source IP address of the flood traffic at the firewall or router to prevent further degradation of resources.","T1498, T1498.001",,Filter network traffic to prevent DoS,Medium,rag_llm,NIDS-20251024-131114-0001

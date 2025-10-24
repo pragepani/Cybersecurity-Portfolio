@@ -1,0 +1,43 @@
+{
+    "validation_method": "5-Fold Cross-Validation",
+    "dataset_size": 200000,
+    "n_features": 77,
+    "date": "2025-10-23 16:27:06",
+    "models": {
+        "Logistic_Regression": {
+            "accuracy_mean": 0.9058,
+            "accuracy_std": 0.0025,
+            "precision_mean": 0.9248,
+            "recall_mean": 0.8835,
+            "f1_mean": 0.9037,
+            "roc_auc_mean": 0.9058,
+            "overfitting": "None (0.02% gap)"
+        },
+        "Random_Forest": {
+            "accuracy_mean": 0.9976,
+            "accuracy_std": 0.0003,
+            "precision_mean": 0.9985,
+            "recall_mean": 0.9966,
+            "f1_mean": 0.9976,
+            "roc_auc_mean": 0.9976,
+            "overfitting": "None (0.18% gap)"
+        },
+        "LightGBM": {
+            "accuracy_mean": 0.999,
+            "accuracy_std": 0.0001,
+            "precision_mean": 0.9988,
+            "recall_mean": 0.9992,
+            "f1_mean": 0.999,
+            "roc_auc_mean": 0.999,
+            "overfitting": "None (0.04% gap)",
+            "recommended": true
+        }
+    },
+    "success_criteria": {
+        "recall_target": 0.95,
+        "recall_achieved": 0.9992,
+        "fpr_target": 0.02,
+        "fpr_achieved": 0.0012,
+        "status": "ALL CRITERIA EXCEEDED"
+    }
+}

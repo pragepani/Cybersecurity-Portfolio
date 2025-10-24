@@ -1,0 +1,1475 @@
+{
+  "T1498": {
+    "id": "T1498",
+    "name": "Network Denial of Service",
+    "description": "Adversaries may perform Network Denial of Service (DoS) attacks to degrade or block the availability of targeted resources to users. Network DoS can be performed by exhausting the network bandwidth services rely on.",
+    "tactics": [
+      "Impact"
+    ],
+    "platforms": [
+      "Windows",
+      "Linux",
+      "macOS",
+      "Network"
+    ],
+    "detection": [
+      "Sudden increases in network traffic from single/multiple sources",
+      "Unusual patterns in network traffic (high packet rates/bandwidth)",
+      "Service response time degradation",
+      "Monitor for logging/messaging artifacts highlighting health issues"
+    ],
+    "mitigation": [
+      "Filter network traffic to prevent DoS",
+      "Leverage CDN or DDoS mitigation providers",
+      "Use network appliances for ingress/egress filtering",
+      "Implement rate limiting on critical services"
+    ],
+    "examples": [
+      "SYN flood overwhelming TCP handshake",
+      "UDP flood consuming bandwidth",
+      "HTTP flood exhausting server resources",
+      "Sustained traffic spike causing degradation"
+    ],
+    "indicators": [
+      "Packet rate exceeding 10,000 pkt/s",
+      "Byte rate exceeding 10 MB/s",
+      "Multiple connections from single source",
+      "Incomplete TCP handshakes"
+    ]
+  },
+  "T1498.001": {
+    "id": "T1498.001",
+    "name": "Direct Network Flood",
+    "description": "Adversaries may attempt to cause a denial of service by directly sending a high-volume of network traffic to a target.",
+    "tactics": [
+      "Impact"
+    ],
+    "parent": "T1498",
+    "platforms": [
+      "Windows",
+      "Linux",
+      "macOS",
+      "Network"
+    ],
+    "detection": [
+      "High volume of packets from identifiable sources",
+      "Bandwidth saturation on network links",
+      "Service response time degradation"
+    ],
+    "mitigation": [
+      "Implement rate limiting at network edge",
+      "Deploy anti-DDoS appliances",
+      "Use ISP-level DDoS protection"
+    ],
+    "examples": [
+      "SYN flood with spoofed addresses",
+      "UDP flood to DNS port",
+      "ICMP flood (ping flood)",
+      "HTTP GET flood"
+    ],
+    "indicators": [
+      "SYN flag count > 1000",
+      "Incomplete three-way handshakes",
+      "Single protocol dominating (>90%)",
+      "Connection table exhaustion"
+    ]
+  },
+  "T1498.002": {
+    "id": "T1498.002",
+    "name": "Reflection Amplification",
+    "description": "Adversaries may attempt to cause a denial of service by reflecting a high-volume of network traffic to a target using third-party servers.",
+    "tactics": [
+      "Impact"
+    ],
+    "parent": "T1498",
+    "platforms": [
+      "Windows",
+      "Linux",
+      "macOS",
+      "Network"
+    ],
+    "detection": [
+      "Traffic from known reflector services (DNS, NTP, SNMP)",
+      "Spoofed source addresses in logs",
+      "Response packets without corresponding requests"
+    ],
+    "mitigation": [
+      "Implement BCP 38 (ingress filtering)",
+      "Disable unnecessary UDP services",
+      "Rate limit DNS/NTP responses"
+    ],
+    "examples": [
+      "DNS amplification using ANY queries",
+      "NTP amplification via monlist",
+      "SNMP amplification via GetBulk"
+    ],
+    "indicators": [
+      "UDP traffic from port 53/123/161",
+      "Response size >> request size (>10x)",
+      "No corresponding outbound requests"
+    ]
+  },
+  "T1486": {
+    "id": "T1486",
+    "name": "Data Encrypted for Impact",
+    "description": "Adversaries may encrypt data on systems to interrupt availability (ransomware).",
+    "tactics": [
+      "Impact"
+    ],
+    "platforms": [
+      "Windows",
+      "Linux",
+      "macOS"
+    ],
+    "detection": [
+      "Mass file encryption",
+      "Ransom notes",
+      "Encryption tool usage"
+    ],
+    "mitigation": [
+      "Data backups",
+      "Behavior monitoring",
+      "Ransomware detection"
+    ],
+    "examples": [
+      "Ransomware encryption",
+      "File lockers",
+      "Mass encryption events"
+    ],
+    "indicators": [
+      "Multiple file extensions changed",
+      "High disk activity",
+      "Ransom note files"
+    ]
+  },
+  "T1046": {
+    "id": "T1046",
+    "name": "Network Service Discovery",
+    "description": "Adversaries may attempt to get a listing of services running on remote hosts and local network infrastructure devices, including those that may be vulnerable to remote software exploitation.",
+    "tactics": [
+      "Discovery"
+    ],
+    "platforms": [
+      "Windows",
+      "Linux",
+      "macOS",
+      "Network"
+    ],
+    "detection": [
+      "Monitor for port scanning activities",
+      "Unusual connection attempts to multiple ports",
+      "Patterns consistent with automated scanning tools"
+    ],
+    "mitigation": [
+      "Network intrusion detection and prevention systems",
+      "Disable unnecessary services",
+      "Network segmentation"
+    ],
+    "examples": [
+      "Nmap TCP SYN scan",
+      "Multiple connection attempts across port range",
+      "Banner grabbing on discovered services"
+    ],
+    "indicators": [
+      "Multiple SYN packets to different ports",
+      "Short flow duration (<100ms)",
+      "No data transfer after connection",
+      "Sequential destination port numbers"
+    ]
+  },
+  "T1087": {
+    "id": "T1087",
+    "name": "Account Discovery",
+    "description": "Adversaries may attempt to get a listing of accounts on a system or domain.",
+    "tactics": [
+      "Discovery"
+    ],
+    "platforms": [
+      "Windows",
+      "Linux",
+      "macOS"
+    ],
+    "detection": [
+      "Account enumeration commands",
+      "LDAP queries",
+      "User listing commands"
+    ],
+    "mitigation": [
+      "Restrict user permissions",
+      "Network segmentation"
+    ],
+    "examples": [
+      "net user commands",
+      "LDAP enumeration",
+      "AD queries"
+    ],
+    "indicators": [
+      "Multiple account queries",
+      "User enumeration patterns"
+    ]
+  },
+  "T1110": {
+    "id": "T1110",
+    "name": "Brute Force",
+    "description": "Adversaries may use brute force techniques to gain access to accounts when passwords are unknown or when password hashes are obtained.",
+    "tactics": [
+      "Credential Access"
+    ],
+    "platforms": [
+      "Windows",
+      "Linux",
+      "macOS",
+      "Network"
+    ],
+    "detection": [
+      "Monitor authentication logs for failed login attempts",
+      "Multiple failed attempts from single source",
+      "Unusual time-of-day for authentication"
+    ],
+    "mitigation": [
+      "Multi-factor authentication",
+      "Account lockout policies",
+      "Password complexity requirements"
+    ],
+    "examples": [
+      "Dictionary attack on SSH",
+      "Brute force on FTP login",
+      "Credential stuffing on web app"
+    ],
+    "indicators": [
+      "Multiple failed authentication attempts",
+      "High connection rate to auth services",
+      "Sequential username attempts"
+    ]
+  },
+  "T1110.001": {
+    "id": "T1110.001",
+    "name": "Password Guessing",
+    "description": "Adversaries may systematically guess passwords to attempt access to accounts.",
+    "tactics": [
+      "Credential Access"
+    ],
+    "parent": "T1110",
+    "platforms": [
+      "Windows",
+      "Linux",
+      "macOS",
+      "Network"
+    ],
+    "detection": [
+      "Monitor authentication logs for failed attempts",
+      "Alert on threshold of failed attempts",
+      "Detect automated tools via timing patterns"
+    ],
+    "mitigation": [
+      "Account lockout after N failed attempts",
+      "CAPTCHA on login forms",
+      "IP-based rate limiting"
+    ],
+    "examples": [
+      "Hydra against SSH (Port 22)",
+      "Medusa against FTP (Port 21)",
+      "Dictionary attack using common passwords"
+    ],
+    "indicators": [
+      "Failed login ratio > 80%",
+      "High authentication rate (>10/sec)",
+      "Sequential or patterned usernames"
+    ]
+  },
+  "T1078": {
+    "id": "T1078",
+    "name": "Valid Accounts",
+    "description": "Adversaries may obtain and abuse credentials of existing accounts.",
+    "tactics": [
+      "Defense Evasion",
+      "Persistence",
+      "Privilege Escalation",
+      "Initial Access"
+    ],
+    "platforms": [
+      "Windows",
+      "Linux",
+      "macOS",
+      "Network"
+    ],
+    "detection": [
+      "Monitor for suspicious account behavior",
+      "Unusual access times or locations",
+      "Concurrent sessions from different locations"
+    ],
+    "mitigation": [
+      "Multi-factor authentication",
+      "Privileged account management",
+      "Account monitoring and auditing"
+    ],
+    "examples": [
+      "Successful login after brute force",
+      "Credential reuse after breach",
+      "Compromised service accounts"
+    ],
+    "indicators": [
+      "Successful auth after many failures",
+      "Account usage from new location",
+      "Access pattern changes"
+    ]
+  },
+  "T1003": {
+    "id": "T1003",
+    "name": "OS Credential Dumping",
+    "description": "Adversaries may attempt to dump credentials to obtain account login information.",
+    "tactics": [
+      "Credential Access"
+    ],
+    "platforms": [
+      "Windows",
+      "Linux",
+      "macOS"
+    ],
+    "detection": [
+      "LSASS access monitoring",
+      "Credential dumping tool signatures",
+      "Memory access patterns"
+    ],
+    "mitigation": [
+      "Privileged access management",
+      "Credential protection features"
+    ],
+    "examples": [
+      "Mimikatz usage",
+      "LSASS memory dumping",
+      "SAM database extraction"
+    ],
+    "indicators": [
+      "LSASS process access",
+      "Memory dump files",
+      "Credential dumping tools"
+    ]
+  },
+  "T1212": {
+    "id": "T1212",
+    "name": "Exploitation for Credential Access",
+    "description": "Adversaries may exploit software vulnerabilities to collect credentials.",
+    "tactics": [
+      "Credential Access"
+    ],
+    "platforms": [
+      "Windows",
+      "Linux",
+      "macOS"
+    ],
+    "detection": [
+      "Unusual authentication traffic",
+      "Memory dumps containing credentials",
+      "Exploitation framework signatures"
+    ],
+    "mitigation": [
+      "Update and patch systems regularly",
+      "Application isolation and sandboxing",
+      "Exploit protection mechanisms"
+    ],
+    "examples": [
+      "Heartbleed exploit for SSL/TLS credentials",
+      "Memory scraping for cached credentials",
+      "Exploitation of authentication vulnerabilities"
+    ],
+    "indicators": [
+      "Vulnerability scanner signatures",
+      "Exploit payload patterns",
+      "Unusual memory access patterns"
+    ]
+  },
+  "T1071": {
+    "id": "T1071",
+    "name": "Application Layer Protocol",
+    "description": "Adversaries may communicate using application layer protocols to avoid detection by blending in with existing traffic.",
+    "tactics": [
+      "Command and Control"
+    ],
+    "platforms": [
+      "Windows",
+      "Linux",
+      "macOS",
+      "Network"
+    ],
+    "detection": [
+      "Analyze network data for uncommon data flows",
+      "Unusual patterns in application layer traffic",
+      "Beaconing behavior (regular intervals)"
+    ],
+    "mitigation": [
+      "Network intrusion detection/prevention",
+      "Filter network traffic by protocol",
+      "SSL/TLS inspection where appropriate"
+    ],
+    "examples": [
+      "HTTP/HTTPS for C2 communication",
+      "DNS tunneling for data exfiltration",
+      "Regular beaconing to C2 server"
+    ],
+    "indicators": [
+      "Periodic connections (beaconing)",
+      "Unusual HTTP methods or headers",
+      "DNS queries to suspicious domains"
+    ]
+  },
+  "T1573": {
+    "id": "T1573",
+    "name": "Encrypted Channel",
+    "description": "Adversaries may employ encryption to conceal command and control traffic.",
+    "tactics": [
+      "Command and Control"
+    ],
+    "platforms": [
+      "Windows",
+      "Linux",
+      "macOS",
+      "Network"
+    ],
+    "detection": [
+      "SSL/TLS inspection for suspicious certificates",
+      "Traffic to unusual ports with encryption",
+      "Custom encryption protocols"
+    ],
+    "mitigation": [
+      "SSL/TLS inspection",
+      "Network intrusion prevention",
+      "Certificate pinning"
+    ],
+    "examples": [
+      "Custom SSL certificates for C2",
+      "Encrypted payloads in legitimate protocols",
+      "VPN tunnels for C2"
+    ],
+    "indicators": [
+      "Self-signed or suspicious certificates",
+      "Encryption on non-standard ports",
+      "High entropy in network payloads"
+    ]
+  },
+  "T1190": {
+    "id": "T1190",
+    "name": "Exploit Public-Facing Application",
+    "description": "Adversaries may exploit weaknesses in Internet-facing applications to gain initial access.",
+    "tactics": [
+      "Initial Access"
+    ],
+    "platforms": [
+      "Windows",
+      "Linux",
+      "macOS",
+      "Network"
+    ],
+    "detection": [
+      "Monitor application logs for abnormal behavior",
+      "WAF alerts on suspicious patterns",
+      "Unusual HTTP methods or parameters"
+    ],
+    "mitigation": [
+      "Regular patching and updates",
+      "Web Application Firewall (WAF)",
+      "Input validation and sanitization"
+    ],
+    "examples": [
+      "SQL injection in web form",
+      "Cross-site scripting (XSS) attacks",
+      "Remote code execution via file upload"
+    ],
+    "indicators": [
+      "Malicious SQL patterns in requests",
+      "Script tags in input fields",
+      "Unusual file extensions in uploads"
+    ]
+  },
+  "T1566": {
+    "id": "T1566",
+    "name": "Phishing",
+    "description": "Adversaries may send phishing messages to gain access to systems.",
+    "tactics": [
+      "Initial Access"
+    ],
+    "platforms": [
+      "Windows",
+      "Linux",
+      "macOS"
+    ],
+    "detection": [
+      "Email filtering",
+      "Phishing indicators",
+      "Malicious attachments"
+    ],
+    "mitigation": [
+      "User training",
+      "Email security",
+      "Anti-phishing tools"
+    ],
+    "examples": [
+      "Spear phishing emails",
+      "Malicious attachments",
+      "Phishing links"
+    ],
+    "indicators": [
+      "Suspicious email patterns",
+      "Known phishing domains",
+      "Malicious attachments"
+    ]
+  },
+  "T1059": {
+    "id": "T1059",
+    "name": "Command and Scripting Interpreter",
+    "description": "Adversaries may abuse command and script interpreters to execute commands, scripts, or binaries.",
+    "tactics": [
+      "Execution"
+    ],
+    "platforms": [
+      "Windows",
+      "Linux",
+      "macOS"
+    ],
+    "detection": [
+      "Monitor executed commands and arguments",
+      "Unusual process execution chains",
+      "Scripts executed from unusual locations"
+    ],
+    "mitigation": [
+      "Execution prevention via application control",
+      "Restrict PowerShell execution policies",
+      "Code signing requirements"
+    ],
+    "examples": [
+      "PowerShell command execution",
+      "Bash shell commands",
+      "Python script execution"
+    ],
+    "indicators": [
+      "Script interpreter spawned by web server",
+      "Base64 encoded commands",
+      "Uncommon command line patterns"
+    ]
+  },
+  "T1041": {
+    "id": "T1041",
+    "name": "Exfiltration Over C2 Channel",
+    "description": "Adversaries may steal data by exfiltrating it over an existing command and control channel.",
+    "tactics": [
+      "Exfiltration"
+    ],
+    "platforms": [
+      "Windows",
+      "Linux",
+      "macOS",
+      "Network"
+    ],
+    "detection": [
+      "Monitor for large amounts of data being transmitted",
+      "Unusual outbound network traffic patterns",
+      "Data transfer outside normal business hours"
+    ],
+    "mitigation": [
+      "Data loss prevention solutions",
+      "Network segmentation",
+      "Monitor and restrict outbound traffic"
+    ],
+    "examples": [
+      "Data embedded in HTTP POST requests",
+      "Files transferred via DNS tunneling",
+      "Data sent to C2 server via HTTPS"
+    ],
+    "indicators": [
+      "Unusually large outbound transfers",
+      "Regular data transmission patterns",
+      "Connections to suspicious domains"
+    ]
+  },
+  "T1048": {
+    "id": "T1048",
+    "name": "Exfiltration Over Alternative Protocol",
+    "description": "Adversaries may steal data by exfiltrating it over non-standard protocols.",
+    "tactics": [
+      "Exfiltration"
+    ],
+    "platforms": [
+      "Windows",
+      "Linux",
+      "macOS",
+      "Network"
+    ],
+    "detection": [
+      "Unusual protocol usage",
+      "DNS tunneling detection",
+      "ICMP data transfers"
+    ],
+    "mitigation": [
+      "Network intrusion prevention",
+      "Protocol filtering"
+    ],
+    "examples": [
+      "DNS tunneling",
+      "ICMP exfiltration",
+      "Custom protocols"
+    ],
+    "indicators": [
+      "Large DNS queries",
+      "ICMP with data payloads",
+      "Unusual protocol patterns"
+    ]
+  },
+  "T1567": {
+    "id": "T1567",
+    "name": "Exfiltration Over Web Service",
+    "description": "Adversaries may use cloud storage services to exfiltrate data.",
+    "tactics": [
+      "Exfiltration"
+    ],
+    "platforms": [
+      "Windows",
+      "Linux",
+      "macOS"
+    ],
+    "detection": [
+      "Large uploads to cloud services",
+      "Unusual cloud service usage"
+    ],
+    "mitigation": [
+      "Data loss prevention",
+      "Web proxy monitoring"
+    ],
+    "examples": [
+      "Dropbox uploads",
+      "Google Drive exfiltration",
+      "OneDrive abuse"
+    ],
+    "indicators": [
+      "Large cloud uploads",
+      "Cloud service from unusual accounts",
+      "Off-hours transfers"
+    ]
+  },
+  "T1021.004": {
+    "id": "T1021.004",
+    "name": "Remote Services: SSH",
+    "description": "Adversaries may use SSH to log into remote systems.",
+    "tactics": [
+      "Lateral Movement"
+    ],
+    "platforms": [
+      "Linux",
+      "macOS"
+    ],
+    "detection": [
+      "SSH login attempts",
+      "Unusual SSH sessions",
+      "Failed SSH authentication"
+    ],
+    "mitigation": [
+      "Multi-factor authentication",
+      "Network segmentation",
+      "Key-based authentication"
+    ],
+    "examples": [
+      "SSH brute force",
+      "Compromised SSH keys",
+      "SSH lateral movement"
+    ],
+    "indicators": [
+      "Multiple SSH login attempts",
+      "SSH from unusual locations",
+      "Off-hours SSH sessions"
+    ]
+  },
+  "T1071.002": {
+    "id": "T1071.002",
+    "name": "Application Layer Protocol: File Transfer Protocols",
+    "description": "Adversaries may use file transfer protocols for command and control or data exfiltration.",
+    "tactics": [
+      "Command and Control"
+    ],
+    "platforms": [
+      "Windows",
+      "Linux",
+      "macOS"
+    ],
+    "detection": [
+      "Unusual FTP/SFTP usage",
+      "Large file transfers",
+      "FTP from unusual sources"
+    ],
+    "mitigation": [
+      "Network monitoring",
+      "Disable unnecessary services",
+      "Authentication requirements"
+    ],
+    "examples": [
+      "FTP for data exfiltration",
+      "SFTP for C2",
+      "Anonymous FTP abuse"
+    ],
+    "indicators": [
+      "FTP connections to unknown servers",
+      "Large FTP transfers",
+      "FTP outside business hours"
+    ]
+  },
+  "T1027": {
+    "id": "T1027",
+    "name": "Obfuscated Files or Information",
+    "description": "Adversaries may obfuscate files or information to make detection difficult.",
+    "tactics": [
+      "Defense Evasion"
+    ],
+    "platforms": [
+      "Windows",
+      "Linux",
+      "macOS"
+    ],
+    "detection": [
+      "High entropy in files",
+      "Base64 encoded content",
+      "Packed executables"
+    ],
+    "mitigation": [
+      "Antivirus/antimalware",
+      "Behavior monitoring"
+    ],
+    "examples": [
+      "Base64 encoded payloads",
+      "Encrypted malware",
+      "Packed binaries"
+    ],
+    "indicators": [
+      "High entropy content",
+      "Obfuscation in scripts",
+      "Encoded command lines"
+    ]
+  },
+  "T1070": {
+    "id": "T1070",
+    "name": "Indicator Removal",
+    "description": "Adversaries may delete or modify artifacts to remove evidence of their presence.",
+    "tactics": [
+      "Defense Evasion"
+    ],
+    "platforms": [
+      "Windows",
+      "Linux",
+      "macOS"
+    ],
+    "detection": [
+      "Log deletion events",
+      "Timestomp detection",
+      "File deletion monitoring"
+    ],
+    "mitigation": [
+      "Centralized logging",
+      "File integrity monitoring"
+    ],
+    "examples": [
+      "Log file deletion",
+      "Event log clearing",
+      "Timestamp manipulation"
+    ],
+    "indicators": [
+      "Event log cleared",
+      "Large file deletions",
+      "Log gaps"
+    ]
+  },
+  "T1055": {
+    "id": "T1055",
+    "name": "Process Injection",
+    "description": "Adversaries may inject code into processes to evade detection.",
+    "tactics": [
+      "Defense Evasion",
+      "Privilege Escalation"
+    ],
+    "platforms": [
+      "Windows",
+      "Linux",
+      "macOS"
+    ],
+    "detection": [
+      "Memory analysis",
+      "API call monitoring",
+      "Unusual process behavior"
+    ],
+    "mitigation": [
+      "Behavior blocking",
+      "Privilege restrictions"
+    ],
+    "examples": [
+      "DLL injection",
+      "Process hollowing",
+      "Thread hijacking"
+    ],
+    "indicators": [
+      "Unusual memory patterns",
+      "Remote thread creation",
+      "Code injection APIs"
+    ]
+  },
+  "T1555": {
+    "id": "T1555",
+    "name": "Credentials from Password Stores",
+    "description": "Adversaries may search for credentials in password stores.",
+    "tactics": [
+      "Credential Access"
+    ],
+    "platforms": [
+      "Windows",
+      "Linux",
+      "macOS"
+    ],
+    "detection": [
+      "Browser credential access",
+      "Password manager monitoring"
+    ],
+    "mitigation": [
+      "Restrict credential store access",
+      "Encryption"
+    ],
+    "examples": [
+      "Browser password extraction",
+      "Credential manager access"
+    ],
+    "indicators": [
+      "Access to credential databases",
+      "Browser data file access"
+    ]
+  },
+  "T1556": {
+    "id": "T1556",
+    "name": "Modify Authentication Process",
+    "description": "Adversaries may modify authentication mechanisms to access credentials.",
+    "tactics": [
+      "Credential Access",
+      "Defense Evasion",
+      "Persistence"
+    ],
+    "platforms": [
+      "Windows",
+      "Linux",
+      "macOS"
+    ],
+    "detection": [
+      "Authentication module changes",
+      "Unusual authentication patterns"
+    ],
+    "mitigation": [
+      "Multi-factor authentication",
+      "Privileged account management"
+    ],
+    "examples": [
+      "PAM modification",
+      "Authentication DLL replacement"
+    ],
+    "indicators": [
+      "Modified authentication modules",
+      "Backdoor authentication"
+    ]
+  },
+  "T1083": {
+    "id": "T1083",
+    "name": "File and Directory Discovery",
+    "description": "Adversaries may enumerate files and directories to find information.",
+    "tactics": [
+      "Discovery"
+    ],
+    "platforms": [
+      "Windows",
+      "Linux",
+      "macOS"
+    ],
+    "detection": [
+      "File system access patterns",
+      "Directory traversal attempts"
+    ],
+    "mitigation": [
+      "File system permissions",
+      "Data loss prevention"
+    ],
+    "examples": [
+      "Directory listing",
+      "File searches",
+      "Automated discovery"
+    ],
+    "indicators": [
+      "Recursive directory listing",
+      "File search patterns"
+    ]
+  },
+  "T1018": {
+    "id": "T1018",
+    "name": "Remote System Discovery",
+    "description": "Adversaries may attempt to get a listing of other systems on the network.",
+    "tactics": [
+      "Discovery"
+    ],
+    "platforms": [
+      "Windows",
+      "Linux",
+      "macOS",
+      "Network"
+    ],
+    "detection": [
+      "Network scanning",
+      "ARP queries",
+      "Ping sweeps"
+    ],
+    "mitigation": [
+      "Network intrusion detection",
+      "Network segmentation"
+    ],
+    "examples": [
+      "Network scanning",
+      "Host discovery",
+      "Ping sweeps"
+    ],
+    "indicators": [
+      "Network scan patterns",
+      "Multiple connection attempts"
+    ]
+  },
+  "T1021.001": {
+    "id": "T1021.001",
+    "name": "Remote Desktop Protocol",
+    "description": "Adversaries may use RDP to log into remote systems.",
+    "tactics": [
+      "Lateral Movement"
+    ],
+    "platforms": [
+      "Windows"
+    ],
+    "detection": [
+      "RDP login attempts",
+      "Unusual RDP sessions",
+      "Failed RDP auth"
+    ],
+    "mitigation": [
+      "Multi-factor authentication",
+      "Network segmentation"
+    ],
+    "examples": [
+      "RDP brute force",
+      "Compromised RDP sessions"
+    ],
+    "indicators": [
+      "Multiple RDP attempts",
+      "RDP from unusual locations"
+    ]
+  },
+  "T1021.002": {
+    "id": "T1021.002",
+    "name": "SMB/Windows Admin Shares",
+    "description": "Adversaries may use SMB for lateral movement.",
+    "tactics": [
+      "Lateral Movement"
+    ],
+    "platforms": [
+      "Windows"
+    ],
+    "detection": [
+      "SMB traffic monitoring",
+      "Admin share access"
+    ],
+    "mitigation": [
+      "Restrict admin share access",
+      "Network segmentation"
+    ],
+    "examples": [
+      "PsExec usage",
+      "Admin share mounting"
+    ],
+    "indicators": [
+      "Admin share connections",
+      "Large SMB transfers"
+    ]
+  },
+  "T1210": {
+    "id": "T1210",
+    "name": "Exploitation of Remote Services",
+    "description": "Adversaries may exploit remote services to gain unauthorized access.",
+    "tactics": [
+      "Lateral Movement"
+    ],
+    "platforms": [
+      "Windows",
+      "Linux",
+      "macOS"
+    ],
+    "detection": [
+      "Exploit signatures",
+      "Unusual service behavior"
+    ],
+    "mitigation": [
+      "Patch management",
+      "Network segmentation"
+    ],
+    "examples": [
+      "EternalBlue exploitation",
+      "Remote service vulnerabilities"
+    ],
+    "indicators": [
+      "Exploit payload signatures",
+      "Service crashes"
+    ]
+  },
+  "T1560": {
+    "id": "T1560",
+    "name": "Archive Collected Data",
+    "description": "Adversaries may compress/encrypt data before exfiltration.",
+    "tactics": [
+      "Collection"
+    ],
+    "platforms": [
+      "Windows",
+      "Linux",
+      "macOS"
+    ],
+    "detection": [
+      "Archive file creation",
+      "Compression tool usage"
+    ],
+    "mitigation": [
+      "Data loss prevention",
+      "File activity monitoring"
+    ],
+    "examples": [
+      "ZIP files with stolen data",
+      "RAR archives"
+    ],
+    "indicators": [
+      "Archive creation with sensitive files",
+      "Large archives"
+    ]
+  },
+  "T1005": {
+    "id": "T1005",
+    "name": "Data from Local System",
+    "description": "Adversaries may search local file systems for sensitive data.",
+    "tactics": [
+      "Collection"
+    ],
+    "platforms": [
+      "Windows",
+      "Linux",
+      "macOS"
+    ],
+    "detection": [
+      "File access patterns",
+      "Data staging activities"
+    ],
+    "mitigation": [
+      "Data loss prevention",
+      "File encryption"
+    ],
+    "examples": [
+      "Sensitive file searches",
+      "Document collection"
+    ],
+    "indicators": [
+      "Multiple file accesses",
+      "Pattern-based searches"
+    ]
+  },
+  "T1491": {
+    "id": "T1491",
+    "name": "Defacement",
+    "description": "Adversaries may modify visual content to deliver messaging.",
+    "tactics": [
+      "Impact"
+    ],
+    "platforms": [
+      "Windows",
+      "Linux",
+      "macOS"
+    ],
+    "detection": [
+      "Website content changes",
+      "File modification monitoring"
+    ],
+    "mitigation": [
+      "File integrity monitoring",
+      "Access controls"
+    ],
+    "examples": [
+      "Website defacement",
+      "System message modification"
+    ],
+    "indicators": [
+      "Unauthorized content changes",
+      "Modified web pages"
+    ]
+  },
+  "T1561": {
+    "id": "T1561",
+    "name": "Disk Wipe",
+    "description": "Adversaries may wipe or corrupt raw disk data.",
+    "tactics": [
+      "Impact"
+    ],
+    "platforms": [
+      "Windows",
+      "Linux",
+      "macOS"
+    ],
+    "detection": [
+      "Disk wiping tool signatures",
+      "MBR modifications"
+    ],
+    "mitigation": [
+      "Data backups",
+      "Privileged access management"
+    ],
+    "examples": [
+      "MBR wiping",
+      "Disk destruction malware"
+    ],
+    "indicators": [
+      "Disk wiping utilities",
+      "MBR modifications"
+    ]
+  },
+  "T1583": {
+    "id": "T1583",
+    "name": "Acquire Infrastructure",
+    "description": "Adversaries may buy, lease, or rent infrastructure for operations.",
+    "tactics": [
+      "Resource Development"
+    ],
+    "platforms": [
+      "PRE"
+    ],
+    "detection": [
+      "Threat intelligence on infrastructure",
+      "Known malicious IP tracking"
+    ],
+    "mitigation": [
+      "Threat intelligence integration",
+      "Network monitoring"
+    ],
+    "examples": [
+      "VPS rental for C2",
+      "Domain registration"
+    ],
+    "indicators": [
+      "Connections to known malicious infrastructure"
+    ]
+  },
+  "T1587": {
+    "id": "T1587",
+    "name": "Develop Capabilities",
+    "description": "Adversaries may build capabilities like malware or exploits.",
+    "tactics": [
+      "Resource Development"
+    ],
+    "platforms": [
+      "PRE"
+    ],
+    "detection": [
+      "Malware development signatures",
+      "Exploit code detection"
+    ],
+    "mitigation": [
+      "Threat intelligence",
+      "Code analysis"
+    ],
+    "examples": [
+      "Custom malware development",
+      "Exploit creation"
+    ],
+    "indicators": [
+      "Development tool usage",
+      "Malware compilation"
+    ]
+  },
+  "T1189": {
+    "id": "T1189",
+    "name": "Drive-by Compromise",
+    "description": "Adversaries may gain access through users visiting compromised websites.",
+    "tactics": [
+      "Initial Access"
+    ],
+    "platforms": [
+      "Windows",
+      "Linux",
+      "macOS"
+    ],
+    "detection": [
+      "Web filtering",
+      "Exploit kit signatures"
+    ],
+    "mitigation": [
+      "Browser security",
+      "Web filtering",
+      "Patch management"
+    ],
+    "examples": [
+      "Exploit kit delivery",
+      "Malicious advertisements"
+    ],
+    "indicators": [
+      "Exploit kit patterns",
+      "Malicious JavaScript"
+    ]
+  },
+  "T1204": {
+    "id": "T1204",
+    "name": "User Execution",
+    "description": "Adversaries may rely on user interaction to execute malicious code.",
+    "tactics": [
+      "Execution"
+    ],
+    "platforms": [
+      "Windows",
+      "Linux",
+      "macOS"
+    ],
+    "detection": [
+      "Execution of downloaded files",
+      "Macro execution"
+    ],
+    "mitigation": [
+      "User training",
+      "Application control"
+    ],
+    "examples": [
+      "Opening malicious attachments",
+      "Running downloaded executables"
+    ],
+    "indicators": [
+      "User-initiated suspicious executions",
+      "Macro-enabled documents"
+    ]
+  },
+  "T1053": {
+    "id": "T1053",
+    "name": "Scheduled Task/Job",
+    "description": "Adversaries may abuse task scheduling for persistence.",
+    "tactics": [
+      "Execution",
+      "Persistence",
+      "Privilege Escalation"
+    ],
+    "platforms": [
+      "Windows",
+      "Linux",
+      "macOS"
+    ],
+    "detection": [
+      "New scheduled task creation",
+      "Task scheduler monitoring"
+    ],
+    "mitigation": [
+      "Privileged access management",
+      "Task auditing"
+    ],
+    "examples": [
+      "Malicious scheduled tasks",
+      "Cron job abuse"
+    ],
+    "indicators": [
+      "New scheduled tasks",
+      "Suspicious task configurations"
+    ]
+  },
+  "T1068": {
+    "id": "T1068",
+    "name": "Exploitation for Privilege Escalation",
+    "description": "Adversaries may exploit software vulnerabilities to elevate privileges.",
+    "tactics": [
+      "Privilege Escalation"
+    ],
+    "platforms": [
+      "Windows",
+      "Linux",
+      "macOS"
+    ],
+    "detection": [
+      "Exploit signatures",
+      "Privilege escalation patterns"
+    ],
+    "mitigation": [
+      "Patch management",
+      "Exploit protection"
+    ],
+    "examples": [
+      "Kernel exploits",
+      "UAC bypass"
+    ],
+    "indicators": [
+      "Exploit payloads",
+      "Unusual privilege changes"
+    ]
+  },
+  "T1134": {
+    "id": "T1134",
+    "name": "Access Token Manipulation",
+    "description": "Adversaries may modify access tokens to operate under different security contexts.",
+    "tactics": [
+      "Defense Evasion",
+      "Privilege Escalation"
+    ],
+    "platforms": [
+      "Windows"
+    ],
+    "detection": [
+      "Token manipulation API calls",
+      "Unusual process tokens"
+    ],
+    "mitigation": [
+      "Privileged access management",
+      "Token protection"
+    ],
+    "examples": [
+      "Token stealing",
+      "Token impersonation"
+    ],
+    "indicators": [
+      "Token manipulation APIs",
+      "Unusual process privileges"
+    ]
+  },
+  "T1095": {
+    "id": "T1095",
+    "name": "Non-Application Layer Protocol",
+    "description": "Adversaries may use non-application layer protocols for C2.",
+    "tactics": [
+      "Command and Control"
+    ],
+    "platforms": [
+      "Windows",
+      "Linux",
+      "macOS",
+      "Network"
+    ],
+    "detection": [
+      "Unusual protocol usage",
+      "Raw socket connections"
+    ],
+    "mitigation": [
+      "Network intrusion prevention",
+      "Protocol filtering"
+    ],
+    "examples": [
+      "ICMP C2",
+      "Custom TCP protocols"
+    ],
+    "indicators": [
+      "Non-standard protocols",
+      "ICMP with data"
+    ]
+  },
+  "T1219": {
+    "id": "T1219",
+    "name": "Remote Access Software",
+    "description": "Adversaries may use legitimate remote access tools for C2.",
+    "tactics": [
+      "Command and Control"
+    ],
+    "platforms": [
+      "Windows",
+      "Linux",
+      "macOS"
+    ],
+    "detection": [
+      "Unapproved remote access tools",
+      "TeamViewer usage monitoring"
+    ],
+    "mitigation": [
+      "Application control",
+      "Network monitoring"
+    ],
+    "examples": [
+      "TeamViewer abuse",
+      "AnyDesk for persistence"
+    ],
+    "indicators": [
+      "Unauthorized remote access tools"
+    ]
+  },
+  "T1572": {
+    "id": "T1572",
+    "name": "Protocol Tunneling",
+    "description": "Adversaries may tunnel network communications to hide C2 traffic.",
+    "tactics": [
+      "Command and Control"
+    ],
+    "platforms": [
+      "Windows",
+      "Linux",
+      "macOS",
+      "Network"
+    ],
+    "detection": [
+      "Tunneling protocol detection",
+      "SSH unusual usage"
+    ],
+    "mitigation": [
+      "Network intrusion prevention",
+      "Traffic analysis"
+    ],
+    "examples": [
+      "SSH tunneling",
+      "DNS tunneling",
+      "VPN for C2"
+    ],
+    "indicators": [
+      "Tunneling protocols",
+      "Encapsulated traffic"
+    ]
+  },
+  "T1595": {
+    "id": "T1595",
+    "name": "Active Scanning",
+    "description": "Adversaries may execute active reconnaissance to gather information.",
+    "tactics": [
+      "Reconnaissance"
+    ],
+    "platforms": [
+      "PRE"
+    ],
+    "detection": [
+      "Scan detection",
+      "Port scan alerts"
+    ],
+    "mitigation": [
+      "Network intrusion detection",
+      "Firewall rules"
+    ],
+    "examples": [
+      "Port scanning",
+      "Vulnerability scanning"
+    ],
+    "indicators": [
+      "Scan patterns",
+      "Multiple connection attempts"
+    ]
+  },
+  "T1590": {
+    "id": "T1590",
+    "name": "Gather Victim Network Information",
+    "description": "Adversaries may gather information about victim networks before compromise.",
+    "tactics": [
+      "Reconnaissance"
+    ],
+    "platforms": [
+      "PRE"
+    ],
+    "detection": [
+      "Threat intelligence",
+      "Network reconnaissance detection"
+    ],
+    "mitigation": [
+      "Threat intelligence",
+      "Information security"
+    ],
+    "examples": [
+      "Network topology gathering",
+      "IP range identification"
+    ],
+    "indicators": [
+      "External reconnaissance",
+      "Information gathering tools"
+    ]
+  }
+}
