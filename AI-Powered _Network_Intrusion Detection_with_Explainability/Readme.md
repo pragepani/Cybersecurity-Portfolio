@@ -1,4 +1,4 @@
-# 🧠 AI-Driven Network Intrusion Detection System (NIDS) with Explainability
+# AI-Driven Network Intrusion Detection System (NIDS) with Explainability
 
 **Author:** Prageeth Panicker  
 **Focus Areas:** Cybersecurity · AI/ML · Explainable AI · Network Analytics  
