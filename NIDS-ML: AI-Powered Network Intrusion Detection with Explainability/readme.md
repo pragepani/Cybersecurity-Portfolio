@@ -91,15 +91,27 @@ The solution processes **Zeek network logs** in real time and produces **interpr
 ## 🗂️ Repository Structure
 
 ```text
-nids-ml/
-|
-|-- data/                    # Raw & processed datasets
-|-- models/                  # Trained LightGBM / Autoencoder / Thresholds
-|-- notebooks/               # Consolidated Jupyter notebooks (Files 01–05)
-|-- scripts/                 # Automation & inference scripts
-|-- outputs/                 # Detection results and Zeek logs
-\-- docs/
-    \-- Project_Approach.md  # Technical explanation document
+NIDS-ML: AI-Powered Network Intrusion Detection with Explainability/
+│
+├── data/                     # Raw & processed datasets
+├── models/                   # Trained LightGBM / Autoencoder / Thresholds
+├── explainer/                # RAG components & MITRE knowledge base
+│   ├── chroma_db/           # ChromaDB vector store
+│   ├── mitre_knowledge_base.json
+│   └── rag_explainer.py     # RAG explainer implementation
+├── notebooks/                # Consolidated Jupyter notebooks (Files 01–05)
+│   ├── 01_NIDS_Development_Part1.ipynb
+│   ├── 02_NIDS_Development_Part2.ipynb
+│   ├── 03_Priority_Upgrade.ipynb
+│   ├── 04_RAG_Implementation.ipynb
+│   └── 05_Zeek_Integration.ipynb
+├── scripts/                  # Automation & inference scripts
+│   └── step7_parallel_processing.py
+├── results/                  # Detection results and logs
+│   └── zeek_3tier_final.csv
+└── docs/
+│   ├── Project_Approach.md   # Project Approach: AI-Driven Network Intrusion Detection with Explainability
+└── README.md             # Project overview
 ```
 
 ---
