@@ -59,7 +59,7 @@ The solution processes **Zeek network logs** in real time and produces **interpr
 | **Level 3** | MITRE ATT&CK JSON | Deterministic fallback |
 
 **Example Output:**  
-> *“Detected behavior aligns with MITRE Technique T1110 – Brute Force, showing multiple failed SSH logins from a single IP within a short interval.”*
+> *"Detected behavior aligns with MITRE Technique T1110 – Brute Force, showing multiple failed SSH logins from a single IP within a short interval."*
 
 ---
 
@@ -80,7 +80,7 @@ The solution processes **Zeek network logs** in real time and produces **interpr
 **Languages:** Python 3.10  
 **Libraries:** scikit-learn · LightGBM · Keras · Pandas · NumPy  
 **Explainability:** **Ollama (local inference)** · **Llama 3.1 : 8B**  
-**Vector Store:** ChromaDB  
+**MITRE Mapping:** Keyword-based retrieval with JSON knowledge base  
 **Optimization:** Parallel LLM processing (ThreadPoolExecutor) · Multi-core utilization  
 **Network Sensor:** Zeek 5.x  
 **Visualization:** Matplotlib · Plotly  
@@ -91,25 +91,21 @@ The solution processes **Zeek network logs** in real time and produces **interpr
 ## 🗂️ Repository Structure
 
 ```text
-NIDS-ML: AI-Powered Network Intrusion Detection with Explainability/
-│
-├── data/                     # Raw & processed datasets
-├── models/                   # Trained LightGBM / Autoencoder / Thresholds
-├── explainer/                # RAG components & MITRE knowledge base
-│   ├── chroma_db/           # ChromaDB vector store
-│   ├── mitre_knowledge_base.json
-│   └── rag_explainer.py     # RAG explainer implementation
-├── notebooks/                # Consolidated Jupyter notebooks (Files 01–05)
-│   ├── 01_NIDS_Development_Part1.ipynb
-│   ├── 02_NIDS_Development_Part2.ipynb
-│   ├── 03_Priority_Upgrade.ipynb
-│   ├── 04_RAG_Implementation.ipynb
-│   └── 05_Zeek_Integration.ipynb
-├── results/                  # Detection results and logs
-│   └── zeek_3tier_final.csv
-└── docs/
-│   ├── Project_Approach.md   # Project Approach: AI-Driven Network Intrusion Detection with Explainability
-└── README.md             # Project overview
+nids-ml/
+|
+|-- data/                    # Raw & processed datasets
+|-- models/                  # Trained LightGBM / Autoencoder / Thresholds
+|-- explainer/               # RAG components & MITRE knowledge base
+|   |-- mitre_knowledge_base_production.json
+|   |-- rag_explainer.py
+|   |-- rag_production_config.json
+|   |-- telemetry.py
+|   \-- __pycache__/
+|-- notebooks/               # Consolidated Jupyter notebooks (Files 01–05)
+|-- scripts/                 # Automation & inference scripts
+|-- results/                 # Detection results and Zeek logs
+\-- docs/
+    \-- Project_Approach.md  # Technical explanation document
 ```
 
 ---
@@ -132,6 +128,7 @@ NIDS-ML: AI-Powered Network Intrusion Detection with Explainability/
 - [x] Parallel LLM processing for faster explanation generation ✅ DONE  
 - [ ] GPU-accelerated inference with CUDA 13  
 - [ ] API-based live detection service (FastAPI / Kafka)  
+- [ ] Vector database integration (ChromaDB) for semantic MITRE search  
 - [ ] Advanced caching and telemetry dashboards  
 - [ ] Automatic MITRE ATT&CK coverage expansion  
 - [ ] Integration with SIEM tools (ELK / Wazuh / OpenCTI)
@@ -157,7 +154,7 @@ Cybersecurity | AI Automation | Risk Management
 
 ### 📄 License
 
-This project is licensed under the **MIT License** — you are free to use, modify, and distribute this code for both personal and commercial purposes, provided that proper credit is given.
+This project is licensed under the **MIT License** – you are free to use, modify, and distribute this code for both personal and commercial purposes, provided that proper credit is given.
 
 ```
 MIT License
