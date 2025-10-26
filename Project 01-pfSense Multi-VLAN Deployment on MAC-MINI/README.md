@@ -203,8 +203,8 @@ This project aligns with roles in:
 
 **Prageeth Panicker**
 
-- GitHub: [@yourusername]((https://github.com/pragepani)
-- LinkedIn: [Your LinkedIn](https://www.linkedin.com/in/prageeth-panicker)
+- GitHub: [@pragepani](https://github.com/pragepani)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/prageeth-panicker)
 
 ## 📝 License
 
