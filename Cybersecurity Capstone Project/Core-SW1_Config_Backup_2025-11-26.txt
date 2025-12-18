@@ -1,0 +1,1091 @@
+show running-config
+show vlan brief
+show interface switchport
+show mac address-table
+show spanning-tree
+show ip interface brief
+show cdp neighbors detail
+
+
+#########################################
+
+Core-SW1#show running-config
+Building configuration...
+
+Current configuration : 3259 bytes
+!
+! Last configuration change at 12:09:31 UTC Wed Nov 26 2025
+!
+version 15.2
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+service compress-config
+!
+hostname Core-SW1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no logging console
+!
+no aaa new-model
+!
+!
+!
+!
+!
+no ipv6 cef
+!
+!
+!
+!
+no ip routing
+!
+no ip domain-lookup
+!
+!
+no ip cef
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Ethernet0/0
+ description Uplink-to-pfSense-Main
+ switchport trunk allowed vlan 10,20,30,40,50,60,70,80,90
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface Ethernet0/1
+ description Trunk-to-Access-SW-Servers
+ switchport trunk allowed vlan 10,26,30,80
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ spanning-tree portfast edge
+!
+interface Ethernet0/2
+ description Ring-Uplink-1
+ switchport trunk allowed vlan 10,20-27,30,40,50,60,70,80,90
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface Ethernet0/3
+ description Ring-Uplink-2
+ switchport trunk allowed vlan 10,20-27,30,40,50,60,70,80,90
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface Ethernet1/0
+ description Trunk-to-Access-SW-Department
+ switchport trunk allowed vlan 10,21-27
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface Ethernet1/1
+ description Uplink-to-pfSense-Client-VLANs
+ switchport trunk allowed vlan 21-27
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface Ethernet1/2
+ description UNUSED-Port
+ shutdown
+!
+interface Ethernet1/3
+ description UNUSED-Port
+ shutdown
+!
+interface Ethernet2/0
+!
+interface Ethernet2/1
+!
+interface Ethernet2/2
+!
+interface Ethernet2/3
+!
+interface Vlan10
+ description Management VLAN
+ ip address 10.0.0.120 255.255.255.0
+ standby 1 ip 10.0.0.119
+ standby 1 priority 150
+ standby 1 preempt
+ no ip route-cache
+!
+interface Vlan20
+ description Corporate VLAN
+ no ip address
+ no ip route-cache
+ shutdown
+!
+interface Vlan21
+ description Project-Delivery-Gateway
+ no ip address
+ ip helper-address 10.30.0.10
+ no ip route-cache
+ shutdown
+!
+interface Vlan22
+ description Sales-Gateway
+ no ip address
+ ip helper-address 10.30.0.10
+ no ip route-cache
+ shutdown
+!
+interface Vlan23
+ description Engineering-Gateway
+ no ip address
+ ip helper-address 10.30.0.10
+ no ip route-cache
+ shutdown
+!
+interface Vlan24
+ description Finance-Gateway
+ no ip address
+ ip helper-address 10.30.0.10
+ no ip route-cache
+ shutdown
+!
+interface Vlan25
+ description HR-Gateway
+ no ip address
+ ip helper-address 10.30.0.10
+ no ip route-cache
+ shutdown
+!
+interface Vlan26
+ description IT-Security-Gateway
+ no ip address
+ ip helper-address 10.30.0.10
+ no ip route-cache
+ shutdown
+!
+interface Vlan27
+ description Executive-Gateway
+ no ip address
+ ip helper-address 10.30.0.10
+ no ip route-cache
+ shutdown
+!
+interface Vlan30
+ description Servers-Gateway
+ no ip address
+ no ip route-cache
+ shutdown
+!
+ip forward-protocol nd
+!
+no ip http server
+ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+line con 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ login
+!
+!
+!
+end
+####################################
+
+
+Core-SW1#show vlan brief
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Et1/2, Et1/3, Et2/0, Et2/1
+                                                Et2/2, Et2/3
+10   Management                       active
+20   Corporate                        active
+21   Project_Delivery                 active
+22   Sales                            active
+23   Engineering                      active
+24   Finance                          active
+25   HR                               active
+26   IT_Security                      active
+27   Executive                        active
+30   Guest                            active
+40   Voice                            active
+50   IoT                              active
+60   Servers                          active
+70   DMZ                              active
+80   Security                         active
+90   Backup                           active
+1002 fddi-default                     act/unsup
+1003 token-ring-default               act/unsup
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1004 fddinet-default                  act/unsup
+1005 trnet-default                    act/unsup
+#######################################################
+
+Core-SW1#show interface switchport
+Name: Et0/0
+Switchport: Enabled
+Administrative Mode: trunk
+Operational Mode: trunk
+Administrative Trunking Encapsulation: dot1q
+Operational Trunking Encapsulation: dot1q
+Negotiation of Trunking: On
+Access Mode VLAN: 1 (default)
+Trunking Native Mode VLAN: 1 (default)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: 10,20,30,40,50,60,70,80,90
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: false
+Appliance trust: none
+
+Name: Et0/1
+Switchport: Enabled
+Administrative Mode: trunk
+Operational Mode: trunk
+Administrative Trunking Encapsulation: dot1q
+Operational Trunking Encapsulation: dot1q
+Negotiation of Trunking: On
+Access Mode VLAN: 1 (default)
+Trunking Native Mode VLAN: 1 (default)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: 10,26,30,80
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: false
+Appliance trust: none
+
+Name: Et0/2
+Switchport: Enabled
+Administrative Mode: trunk
+Operational Mode: trunk
+Administrative Trunking Encapsulation: dot1q
+Operational Trunking Encapsulation: dot1q
+Negotiation of Trunking: On
+Access Mode VLAN: 1 (default)
+Trunking Native Mode VLAN: 1 (default)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: 10,20-27,30,40,50,60,70,80,90
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: false
+Appliance trust: none
+
+Name: Et0/3
+Switchport: Enabled
+Administrative Mode: trunk
+Operational Mode: trunk
+Administrative Trunking Encapsulation: dot1q
+Operational Trunking Encapsulation: dot1q
+Negotiation of Trunking: On
+Access Mode VLAN: 1 (default)
+Trunking Native Mode VLAN: 1 (default)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: 10,20-27,30,40,50,60,70,80,90
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: false
+Appliance trust: none
+
+Name: Et1/0
+Switchport: Enabled
+Administrative Mode: trunk
+Operational Mode: trunk
+Administrative Trunking Encapsulation: dot1q
+Operational Trunking Encapsulation: dot1q
+Negotiation of Trunking: On
+Access Mode VLAN: 1 (default)
+Trunking Native Mode VLAN: 1 (default)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: 10,21-27
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: false
+Appliance trust: none
+
+Name: Et1/1
+Switchport: Enabled
+Administrative Mode: trunk
+Operational Mode: trunk
+Administrative Trunking Encapsulation: dot1q
+Operational Trunking Encapsulation: dot1q
+Negotiation of Trunking: On
+Access Mode VLAN: 1 (default)
+Trunking Native Mode VLAN: 1 (default)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: 21-27
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: false
+Appliance trust: none
+
+Name: Et1/2
+Switchport: Enabled
+Administrative Mode: dynamic auto
+Operational Mode: down
+Administrative Trunking Encapsulation: negotiate
+Negotiation of Trunking: On
+Access Mode VLAN: 1 (default)
+Trunking Native Mode VLAN: 1 (default)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: ALL
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: false
+Appliance trust: none
+
+Name: Et1/3
+Switchport: Enabled
+Administrative Mode: dynamic auto
+Operational Mode: down
+Administrative Trunking Encapsulation: negotiate
+Negotiation of Trunking: On
+Access Mode VLAN: 1 (default)
+Trunking Native Mode VLAN: 1 (default)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: ALL
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: false
+Appliance trust: none
+
+Name: Et2/0
+Switchport: Enabled
+Administrative Mode: dynamic auto
+Operational Mode: static access
+Administrative Trunking Encapsulation: negotiate
+Operational Trunking Encapsulation: native
+Negotiation of Trunking: On
+Access Mode VLAN: 1 (default)
+Trunking Native Mode VLAN: 1 (default)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: ALL
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: false
+Appliance trust: none
+
+Name: Et2/1
+Switchport: Enabled
+Administrative Mode: dynamic auto
+Operational Mode: static access
+Administrative Trunking Encapsulation: negotiate
+Operational Trunking Encapsulation: native
+Negotiation of Trunking: On
+Access Mode VLAN: 1 (default)
+Trunking Native Mode VLAN: 1 (default)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: ALL
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: false
+Appliance trust: none
+
+Name: Et2/2
+Switchport: Enabled
+Administrative Mode: dynamic auto
+Operational Mode: static access
+Administrative Trunking Encapsulation: negotiate
+Operational Trunking Encapsulation: native
+Negotiation of Trunking: On
+Access Mode VLAN: 1 (default)
+Trunking Native Mode VLAN: 1 (default)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: ALL
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: false
+Appliance trust: none
+
+Name: Et2/3
+Switchport: Enabled
+Administrative Mode: dynamic auto
+Operational Mode: static access
+Administrative Trunking Encapsulation: negotiate
+Operational Trunking Encapsulation: native
+Negotiation of Trunking: On
+Access Mode VLAN: 1 (default)
+Trunking Native Mode VLAN: 1 (default)
+Administrative Native VLAN tagging: enabled
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk Native VLAN tagging: enabled
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk associations: none
+Administrative private-vlan trunk mappings: none
+Operational private-vlan: none
+Trunking VLANs Enabled: ALL
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+
+Protected: false
+Appliance trust: none
+###############################################
+
+
+Core-SW1#show mac address-table
+          Mac Address Table
+-------------------------------------------
+
+Vlan    Mac Address       Type        Ports
+----    -----------       --------    -----
+  10    0000.5e00.0101    DYNAMIC     Et0/0
+  10    aabb.cc00.1020    DYNAMIC     Et0/2
+  10    aabb.cc80.1000    DYNAMIC     Et0/2
+  10    aabb.cc80.8000    DYNAMIC     Et0/2
+  20    0000.5e00.0102    DYNAMIC     Et0/0
+  20    aabb.cc00.1020    DYNAMIC     Et0/2
+  30    0000.5e00.0103    DYNAMIC     Et0/0
+  30    5000.0005.0000    DYNAMIC     Et0/0
+  30    aabb.cc00.1020    DYNAMIC     Et0/2
+  40    0000.5e00.0104    DYNAMIC     Et0/0
+  40    aabb.cc00.1020    DYNAMIC     Et0/2
+  50    0000.5e00.0105    DYNAMIC     Et0/0
+  50    aabb.cc00.1020    DYNAMIC     Et0/2
+  60    0000.5e00.0106    DYNAMIC     Et0/0
+  60    aabb.cc00.1020    DYNAMIC     Et0/2
+  70    0000.5e00.0107    DYNAMIC     Et0/0
+  70    aabb.cc00.1020    DYNAMIC     Et0/2
+  80    0000.5e00.0108    DYNAMIC     Et0/0
+  80    aabb.cc00.1020    DYNAMIC     Et0/2
+  90    0000.5e00.0109    DYNAMIC     Et0/0
+  90    aabb.cc00.1020    DYNAMIC     Et0/2
+  26    0000.5e00.011a    DYNAMIC     Et1/1
+  26    5000.0005.0004    DYNAMIC     Et1/1
+  26    5000.000a.0000    DYNAMIC     Et0/2
+  26    aabb.cc00.1020    DYNAMIC     Et0/2
+  21    0000.5e00.0115    DYNAMIC     Et1/1
+  21    aabb.cc00.1020    DYNAMIC     Et0/2
+  22    0000.5e00.0116    DYNAMIC     Et1/1
+  22    aabb.cc00.1020    DYNAMIC     Et0/2
+  23    0000.5e00.0117    DYNAMIC     Et1/1
+  23    aabb.cc00.1020    DYNAMIC     Et0/2
+  24    0000.5e00.0118    DYNAMIC     Et1/1
+  24    aabb.cc00.1020    DYNAMIC     Et0/2
+  25    0000.5e00.0119    DYNAMIC     Et1/1
+  25    aabb.cc00.1020    DYNAMIC     Et0/2
+  27    0000.5e00.011b    DYNAMIC     Et1/1
+  27    aabb.cc00.1020    DYNAMIC     Et0/2
+Total Mac Addresses for this criterion: 37
+########################################################
+
+Core-SW1#show spanning-tree
+
+VLAN0001
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    32769
+             Address     aabb.cc00.2000
+             This bridge is the root
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32769  (priority 32768 sys-id-ext 1)
+             Address     aabb.cc00.2000
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Et2/0               Desg FWD 100       128.9    P2p
+Et2/1               Desg FWD 100       128.10   P2p
+Et2/2               Desg FWD 100       128.11   P2p
+Et2/3               Desg FWD 100       128.12   P2p
+
+
+
+VLAN0010
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    32778
+             Address     aabb.cc00.1000
+             Cost        100
+             Port        3 (Ethernet0/2)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32778  (priority 32768 sys-id-ext 10)
+             Address     aabb.cc00.2000
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Et0/0               Desg FWD 100       128.1    P2p
+Et0/1               Desg FWD 100       128.2    P2p
+Et0/2               Root FWD 100       128.3    P2p
+Et0/3               Desg FWD 100       128.4    P2p
+Et1/0               Desg FWD 100       128.5    P2p
+
+
+
+VLAN0020
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    32788
+             Address     aabb.cc00.1000
+             Cost        100
+             Port        3 (Ethernet0/2)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32788  (priority 32768 sys-id-ext 20)
+             Address     aabb.cc00.2000
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Et0/0               Desg FWD 100       128.1    P2p
+Et0/2               Root FWD 100       128.3    P2p
+Et0/3               Desg FWD 100       128.4    P2p
+
+
+
+VLAN0021
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    32789
+             Address     aabb.cc00.1000
+             Cost        100
+             Port        3 (Ethernet0/2)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32789  (priority 32768 sys-id-ext 21)
+             Address     aabb.cc00.2000
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Et0/2               Root FWD 100       128.3    P2p
+Et0/3               Desg FWD 100       128.4    P2p
+Et1/0               Desg FWD 100       128.5    P2p
+Et1/1               Desg FWD 100       128.6    P2p
+
+
+
+VLAN0022
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    32790
+             Address     aabb.cc00.1000
+             Cost        100
+             Port        3 (Ethernet0/2)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32790  (priority 32768 sys-id-ext 22)
+             Address     aabb.cc00.2000
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Et0/2               Root FWD 100       128.3    P2p
+Et0/3               Desg FWD 100       128.4    P2p
+Et1/0               Desg FWD 100       128.5    P2p
+Et1/1               Desg FWD 100       128.6    P2p
+
+
+
+VLAN0023
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    32791
+             Address     aabb.cc00.1000
+             Cost        100
+             Port        3 (Ethernet0/2)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32791  (priority 32768 sys-id-ext 23)
+             Address     aabb.cc00.2000
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Et0/2               Root FWD 100       128.3    P2p
+Et0/3               Desg FWD 100       128.4    P2p
+Et1/0               Desg FWD 100       128.5    P2p
+Et1/1               Desg FWD 100       128.6    P2p
+
+
+
+VLAN0024
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    32792
+             Address     aabb.cc00.1000
+             Cost        100
+             Port        3 (Ethernet0/2)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32792  (priority 32768 sys-id-ext 24)
+             Address     aabb.cc00.2000
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Et0/2               Root FWD 100       128.3    P2p
+Et0/3               Desg FWD 100       128.4    P2p
+Et1/0               Desg FWD 100       128.5    P2p
+Et1/1               Desg FWD 100       128.6    P2p
+
+
+
+VLAN0025
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    32793
+             Address     aabb.cc00.1000
+             Cost        100
+             Port        3 (Ethernet0/2)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32793  (priority 32768 sys-id-ext 25)
+             Address     aabb.cc00.2000
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Et0/2               Root FWD 100       128.3    P2p
+Et0/3               Desg FWD 100       128.4    P2p
+Et1/0               Desg FWD 100       128.5    P2p
+Et1/1               Desg FWD 100       128.6    P2p
+
+
+
+VLAN0026
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    32794
+             Address     aabb.cc00.1000
+             Cost        100
+             Port        3 (Ethernet0/2)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32794  (priority 32768 sys-id-ext 26)
+             Address     aabb.cc00.2000
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Et0/1               Desg FWD 100       128.2    P2p
+Et0/2               Root FWD 100       128.3    P2p
+Et0/3               Desg FWD 100       128.4    P2p
+Et1/0               Desg FWD 100       128.5    P2p
+Et1/1               Desg FWD 100       128.6    P2p
+
+
+
+VLAN0027
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    32795
+             Address     aabb.cc00.1000
+             Cost        100
+             Port        3 (Ethernet0/2)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32795  (priority 32768 sys-id-ext 27)
+             Address     aabb.cc00.2000
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Et0/2               Root FWD 100       128.3    P2p
+Et0/3               Desg FWD 100       128.4    P2p
+Et1/0               Desg FWD 100       128.5    P2p
+Et1/1               Desg FWD 100       128.6    P2p
+
+
+
+VLAN0030
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    32798
+             Address     aabb.cc00.1000
+             Cost        100
+             Port        3 (Ethernet0/2)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32798  (priority 32768 sys-id-ext 30)
+             Address     aabb.cc00.2000
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Et0/0               Desg FWD 100       128.1    P2p
+Et0/1               Desg FWD 100       128.2    P2p
+Et0/2               Root FWD 100       128.3    P2p
+Et0/3               Desg FWD 100       128.4    P2p
+
+
+
+VLAN0040
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    32808
+             Address     aabb.cc00.1000
+             Cost        100
+             Port        3 (Ethernet0/2)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32808  (priority 32768 sys-id-ext 40)
+             Address     aabb.cc00.2000
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Et0/0               Desg FWD 100       128.1    P2p
+Et0/2               Root FWD 100       128.3    P2p
+Et0/3               Desg FWD 100       128.4    P2p
+
+
+
+VLAN0050
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    32818
+             Address     aabb.cc00.1000
+             Cost        100
+             Port        3 (Ethernet0/2)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32818  (priority 32768 sys-id-ext 50)
+             Address     aabb.cc00.2000
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Et0/0               Desg FWD 100       128.1    P2p
+Et0/2               Root FWD 100       128.3    P2p
+Et0/3               Desg FWD 100       128.4    P2p
+
+
+
+VLAN0060
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    32828
+             Address     aabb.cc00.1000
+             Cost        100
+             Port        3 (Ethernet0/2)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32828  (priority 32768 sys-id-ext 60)
+             Address     aabb.cc00.2000
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Et0/0               Desg FWD 100       128.1    P2p
+Et0/2               Root FWD 100       128.3    P2p
+Et0/3               Desg FWD 100       128.4    P2p
+
+
+
+VLAN0070
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    32838
+             Address     aabb.cc00.1000
+             Cost        100
+             Port        3 (Ethernet0/2)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32838  (priority 32768 sys-id-ext 70)
+             Address     aabb.cc00.2000
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Et0/0               Desg FWD 100       128.1    P2p
+Et0/2               Root FWD 100       128.3    P2p
+Et0/3               Desg FWD 100       128.4    P2p
+
+
+
+VLAN0080
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    32848
+             Address     aabb.cc00.1000
+             Cost        100
+             Port        3 (Ethernet0/2)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32848  (priority 32768 sys-id-ext 80)
+             Address     aabb.cc00.2000
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Et0/0               Desg FWD 100       128.1    P2p
+Et0/1               Desg FWD 100       128.2    P2p
+Et0/2               Root FWD 100       128.3    P2p
+Et0/3               Desg FWD 100       128.4    P2p
+
+
+
+VLAN0090
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    32858
+             Address     aabb.cc00.1000
+             Cost        100
+             Port        3 (Ethernet0/2)
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32858  (priority 32768 sys-id-ext 90)
+             Address     aabb.cc00.2000
+             Hello Time   2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  300 sec
+
+Interface           Role Sts Cost      Prio.Nbr Type
+------------------- ---- --- --------- -------- --------------------------------
+Et0/0               Desg FWD 100       128.1    P2p
+Et0/2               Root FWD 100       128.3    P2p
+Et0/3               Desg FWD 100       128.4    P2p
+#############################################
+
+Core-SW1#show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol
+Ethernet0/0            unassigned      YES unset  up                    up
+Ethernet0/1            unassigned      YES unset  up                    up
+Ethernet0/2            unassigned      YES unset  up                    up
+Ethernet0/3            unassigned      YES unset  up                    up
+Ethernet1/0            unassigned      YES unset  up                    up
+Ethernet1/1            unassigned      YES unset  up                    up
+Ethernet1/2            unassigned      YES unset  administratively down down
+Ethernet1/3            unassigned      YES unset  administratively down down
+Ethernet2/0            unassigned      YES unset  up                    up
+Ethernet2/1            unassigned      YES unset  up                    up
+Ethernet2/2            unassigned      YES unset  up                    up
+Ethernet2/3            unassigned      YES unset  up                    up
+Vlan10                 10.0.0.120      YES NVRAM  up                    up
+Vlan20                 unassigned      YES unset  administratively down down
+Vlan21                 unassigned      YES unset  administratively down down
+Vlan22                 unassigned      YES unset  administratively down down
+Vlan23                 unassigned      YES unset  administratively down down
+Vlan24                 unassigned      YES unset  administratively down down
+Vlan25                 unassigned      YES unset  administratively down down
+Vlan26                 unassigned      YES unset  administratively down down
+Vlan27                 unassigned      YES unset  administratively down down
+Vlan30                 unassigned      YES unset  administratively down down
+######################################################
+Core-SW1#show cdp neighbors detail
+-------------------------
+Device ID: Core-SW2
+Entry address(es):
+  IP address: 10.0.0.121
+Platform: Linux Unix,  Capabilities: Switch IGMP
+Interface: Ethernet0/2,  Port ID (outgoing port): Ethernet0/2
+Holdtime : 172 sec
+
+Version :
+Cisco IOS Software, Linux Software (I86BI_LINUXL2-IPBASEK9-M), Experimental Version 15.2(20170809:194209) [dstivers-aug9_2017-high_iron_cts 101]
+Copyright (c) 1986-2017 by Cisco Systems, Inc.
+Compiled Wed 09-Aug-17 13:49 by xxxxxxxx
+
+advertisement version: 2
+VTP Management Domain: ''
+Native VLAN: 1
+Duplex: full
+Management address(es):
+  IP address: 10.0.0.121
+
+-------------------------
+Device ID: Switch
+Entry address(es):
+  IP address: 10.0.0.171
+Platform: Linux Unix,  Capabilities: Router Switch IGMP
+Interface: Ethernet1/0,  Port ID (outgoing port): Ethernet0/0
+Holdtime : 174 sec
+
+Version :
+Cisco IOS Software, Linux Software (I86BI_LINUXL2-ADVENTERPRISEK9-M), Version 15.2(CML_NIGHTLY_20180510)FLO_DSGS7, EARLY DEPLOYMENT DEVELOPMENT BUILD, synced to  V152_6_0_81_E
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2018 by Cisco Systems, Inc.
+Compiled Thu 10-May-18 02:45 by mmen
+
+advertisement version: 2
+VTP Management Domain: ''
+Native VLAN: 1
+Duplex: full
+Management address(es):
+  IP address: 10.0.0.171
+
+-------------------------
+Device ID: Access-SW-Servers
+Entry address(es):
+  IP address: 10.0.0.161
+Platform: Linux Unix,  Capabilities: Router Switch IGMP
+Interface: Ethernet0/1,  Port ID (outgoing port): Ethernet0/0
+Holdtime : 131 sec
+
+Version :
+Cisco IOS Software, Linux Software (I86BI_LINUXL2-ADVENTERPRISEK9-M), Version 15.2(CML_NIGHTLY_20180510)FLO_DSGS7, EARLY DEPLOYMENT DEVELOPMENT BUILD, synced to  V152_6_0_81_E
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2018 by Cisco Systems, Inc.
+Compiled Thu 10-May-18 02:45 by mmen
+
+advertisement version: 2
+VTP Management Domain: ''
+Native VLAN: 1
+Duplex: full
+Management address(es):
+  IP address: 10.0.0.161
+
+
+Total cdp entries displayed : 3
